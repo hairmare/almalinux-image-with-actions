@@ -1,0 +1,76 @@
+name: Deploy images
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run the build
+        run: |
+          CONTAINER_NAME=imagebuilder
+          CLI="sudo podman exec -t $CONTAINER_NAME composer-cli"
+
+          podman build -t builder .
+          podman image save -o builder.tar builder
+          cat builder.tar | sudo podman load
+
+          sudo podman run --rm --detach --privileged \
+            -v $(pwd):/repo \
+            --name $CONTAINER_NAME \
+            builder
+
+          # Wait for composer to be fully running.
+          echo "⏱ Waiting for composer to start"
+          for i in `seq 1 10`; do
+              sleep 1
+              $CLI status show && break
+          done
+          $CLI blueprints push /repo/almalinux-9.toml
+          $CLI blueprints depsolve almalinux-9
+          echo "🛠 Build the image"
+          $CLI --json compose start almalinux-9 qcow2 | tee compose_start.json
+          COMPOSE_ID=$(jq -r ".body.build_id" compose_start.json)
+          sudo podman exec -t $CONTAINER_NAME journalctl -af &
+          sleep 10
+          while true; do
+            $CLI --json compose info "${COMPOSE_ID}" | tee compose_info.json > /dev/null
+            COMPOSE_STATUS=$(jq -r ".body.queue_status" compose_info.json)
+            if [ $((COUNTER%60)) -eq 0 ]; then
+              echo "💤 Waiting for the compose to finish at $(date +%H:%M:%S)"
+            fi
+            if [[ $COMPOSE_STATUS != RUNNING ]] && [[ $COMPOSE_STATUS != WAITING ]]; then
+              echo "🎉 Compose finished."
+              break
+            fi
+            sleep 15
+            let COUNTER=COUNTER+1
+          done
+          if [[ $COMPOSE_STATUS != FINISHED ]]; then
+            $CLI compose logs ${COMPOSE_ID}
+            sudo podman exec -t $CONTAINER_NAME cat logs/osbuild.log
+            exit 1
+          fi
+          sudo podman exec -t $CONTAINER_NAME mkdir -p /repo/dist
+          sudo podman exec -w /repo/dist -t $CONTAINER_NAME composer-cli compose image ${COMPOSE_ID}
+          sudo podman exec -w /repo/dist -t $CONTAINER_NAME chmod -R +r /repo/dist
+
+      - name: Store image in artifact storage
+        uses: actions/upload-artifact@v3
+        with:
+          name: image
+          path: |
+            dist

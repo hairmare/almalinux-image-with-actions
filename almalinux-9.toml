@@ -1,0 +1,22 @@
+name = "almalinux-9"
+description = "AlmaLinux 9"
+distro = "almalinux-91"
+version = "0.0.0"
+modules = []
+groups = []
+
+[[packages]]
+name = "cloud-init"
+version = "*"
+
+[[packages]]
+name = "ipa-client"
+version = "*"
+
+[[packages]]
+name = "subscription-manager"
+version = "*"
+
+[[packages]]
+name = "vim"
+version = "*"
