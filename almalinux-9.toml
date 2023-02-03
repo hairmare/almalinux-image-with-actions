@@ -21,6 +21,7 @@ version = "*"
 name = "vim"
 version = "*"
 
+[customizations]
 [[customizations.sshkey]]
 user = "root"
 key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvv0JHfOaqUR0XShL66xUw5lWQQSwoo8IdRigObgcPrWKc8BrYDjQmWGuyLG/Y14v0XLZ/xv6qyX6yRVLWJNm2PsO7g739KZWvIC49kMhfqjEm7hr2NHaQVNuAJlavE7JLt9WjRPY5GvTYAjnBB49rTATT+wPshNMlnI/cnf21Cn+0kbltB6q8lIeo/gDW8XYsTCPKvikSPAAFgUozljnwW7DNeFlag8e8pPAB1VFJOafwJPZ++jyUPFd0+gCOCk7pvfOlVST/r6Iplyw4K5KkcWhxWMCz5MvYkC9jUSmGjpfaQvbExordbeNr+zkvTGsj8XWVLWV0KK0LwBvVBDFOQ=="
@@ -34,3 +35,7 @@ home = "/home/admin/"
 shell = "/usr/bin/bash"
 groups = ["users", "wheel"]
 uid = 1000
+
+[customizations.openscap]
+datastream = "/usr/share/xml/scap/ssg/content/ssg-almalinux9-ds.xml"
+profile_id = "xccdf_org.ssgproject.content_profile_cis"

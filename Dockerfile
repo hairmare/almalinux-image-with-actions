@@ -6,6 +6,7 @@ RUN dnf -qy upgrade \
        jq \
        lorax-templates-almalinux \
        osbuild-composer \
+       scap-security-guide \
  && dnf clean all \
  && systemctl enable osbuild-composer.socket \
  && mkdir -p /etc/osbuild-composer/repositories \
