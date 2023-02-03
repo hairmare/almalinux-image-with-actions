@@ -20,3 +20,22 @@ version = "*"
 [[packages]]
 name = "vim"
 version = "*"
+
+[[customizations.sshkey]]
+user = "root"
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvv0JHfOaqUR0XShL66xUw5lWQQSwoo8IdRigObgcPrWKc8BrYDjQmWGuyLG/Y14v0XLZ/xv6qyX6yRVLWJNm2PsO7g739KZWvIC49kMhfqjEm7hr2NHaQVNuAJlavE7JLt9WjRPY5GvTYAjnBB49rTATT+wPshNMlnI/cnf21Cn+0kbltB6q8lIeo/gDW8XYsTCPKvikSPAAFgUozljnwW7DNeFlag8e8pPAB1VFJOafwJPZ++jyUPFd0+gCOCk7pvfOlVST/r6Iplyw4K5KkcWhxWMCz5MvYkC9jUSmGjpfaQvbExordbeNr+zkvTGsj8XWVLWV0KK0LwBvVBDFOQ=="
+
+[[customizations.group]]
+name = "admin"
+gid = 1000
+
+[[customizations.user]]
+name = "admin"
+description = "Local Admin User"
+password = "$6$t58wJBNUgBnRbPcz$OiTh3obvlTx4/bNyiYrItckqFMMEyrM88o.KjHqdWDK2lB3egQUguvVjIG6mbVSMqetumC8NXNGU..3tVTUfP/"
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvv0JHfOaqUR0XShL66xUw5lWQQSwoo8IdRigObgcPrWKc8BrYDjQmWGuyLG/Y14v0XLZ/xv6qyX6yRVLWJNm2PsO7g739KZWvIC49kMhfqjEm7hr2NHaQVNuAJlavE7JLt9WjRPY5GvTYAjnBB49rTATT+wPshNMlnI/cnf21Cn+0kbltB6q8lIeo/gDW8XYsTCPKvikSPAAFgUozljnwW7DNeFlag8e8pPAB1VFJOafwJPZ++jyUPFd0+gCOCk7pvfOlVST/r6Iplyw4K5KkcWhxWMCz5MvYkC9jUSmGjpfaQvbExordbeNr+zkvTGsj8XWVLWV0KK0LwBvVBDFOQ=="
+home = "/home/admin/"
+shell = "/usr/bin/bash"
+groups = ["users", "wheel"]
+uid = 1000
+gid = 1000
