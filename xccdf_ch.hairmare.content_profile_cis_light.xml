@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xccdf:Tailoring xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" id="xccdf_scap-workbench_tailoring_default">
+  <xccdf:benchmark href="file:///usr/share/xml/scap/ssg/content/ssg-almalinux9-ds.xml"/>
+  <xccdf:version time="2023-02-03T16:42:31">1</xccdf:version>
+  <xccdf:Profile id="xccdf_ch.hairmare.content_profile_cis_light" extends="xccdf_org.ssgproject.content_profile_cis">
+    <xccdf:title xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">[DRAFT] CIS Red Hat Enterprise Linux 9 Benchmark for Level 2 - Server [CUSTOMIZED]</xccdf:title>
+    <xccdf:description xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">This is a draft profile based on its RHEL8 version for experimental purposes.
+It is not based on the CIS benchmark for RHEL9, because this one was not available at time of
+the release.</xccdf:description>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_aide_periodic_cron_checking" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_aide_build_database" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_aide_installed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_aide" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_rpm_verification" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_rpm_verify_permissions" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_rpm_verify_ownership" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_rpm_verify_hashes" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_software-integrity" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_crypto-policies_installed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_tmp" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_log" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_log_audit" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_tmp" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_home" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_scap-security-guide_installed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_system-tools" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_subscription-manager_installed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_deprecated" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_telnetd_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_telnetd-ssl_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_ntpdate_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_nis_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_inetutils-telnetd_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_openldap-servers_removed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_openldap_server" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_chrony_installed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_chronyd_enabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_client_only" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_no_chronyc_network" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_sshd_enabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_firewalld_sshd_port_enabled" selected="true"/>
+  </xccdf:Profile>
+</xccdf:Tailoring>
