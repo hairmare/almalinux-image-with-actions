@@ -25,6 +25,10 @@ version = "*"
 name = "vim"
 version = "*"
 
+[[packages]]
+name = "podman"
+version = "*"
+
 [customizations]
 
 [customizations.timezone]
