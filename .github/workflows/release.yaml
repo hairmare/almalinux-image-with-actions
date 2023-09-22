@@ -50,7 +50,7 @@ jobs:
           sleep 10
           while true; do
             $CLI --json compose info "${COMPOSE_ID}" | tee compose_info.json > /dev/null
-            COMPOSE_STATUS=$(jq -r ".[0]body.queue_status" compose_info.json)
+            COMPOSE_STATUS=$(jq -r ".[0].body.queue_status" compose_info.json)
             if [ $((COUNTER%60)) -eq 0 ]; then
               echo "💤 Waiting for the compose to finish at $(date +%H:%M:%S)"
             fi
