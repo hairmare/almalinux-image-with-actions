@@ -1,6 +1,6 @@
 name = "almalinux-9"
 description = "AlmaLinux 9"
-distro = "almalinux-91"
+distro = "almalinux-92"
 version = "0.0.0"
 modules = []
 groups = []
@@ -27,6 +27,18 @@ version = "*"
 
 [[packages]]
 name = "podman"
+version = "*"
+
+[[packages]]
+name = "kubelet"
+version = "*"
+
+[[packages]]
+name = "kubeadm"
+version = "*"
+
+[[packages]]
+name = "kubectl"
 version = "*"
 
 [[containers]]
@@ -60,4 +72,4 @@ uid = 1000
 [customizations.openscap]
 datastream = "/usr/share/xml/scap/ssg/content/ssg-almalinux9-ds.xml"
 profile_id = "xccdf_org.ssgproject.content_profile_cis"
-tailoring = "/etc/osbuild-comsposer/oscap/xccdf_ch.hairmare.content_profile_cis_light.xml"
+tailoring = "/etc/osbuild-composer/oscap/xccdf_ch.hairmare.content_profile_cis_light.xml"

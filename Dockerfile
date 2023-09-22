@@ -1,4 +1,4 @@
-FROM docker.io/almalinux/9-init:9.1-20221201
+FROM docker.io/almalinux/9-init:9.2-20230718
 
 RUN dnf -qy upgrade \
  && dnf -qy install \
