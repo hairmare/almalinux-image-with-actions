@@ -41,6 +41,7 @@ jobs:
           done
           echo "Pushing and depsolving blueprints"
           $CLI sources add /repo/kubernetes.toml
+          $CLI sources add /repo/cri-o.toml
           $CLI blueprints push /repo/almalinux-9.toml
           $CLI blueprints depsolve almalinux-9
           echo "Starting compose"

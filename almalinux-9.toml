@@ -26,7 +26,7 @@ name = "vim"
 version = "*"
 
 [[packages]]
-name = "podman"
+name = "cri-o"
 version = "*"
 
 [[packages]]

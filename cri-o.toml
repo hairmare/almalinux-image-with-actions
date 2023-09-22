@@ -1,0 +1,6 @@
+id = "crio"
+name = "CRI-O"
+type = "yum-baseurl"
+url = "https://download.opensuse.org/repositories/isv:/kubernetes:/addons:/cri-o:/prerelease:/main:/build/rpm/"
+check_gpg = false
+check_ssl = false
