@@ -52,8 +52,11 @@ append = "modules_load=overlay,br_netfilter"
 [customizations.timezone]
 timezone = "Europe/Zurich"
 
+[customizations.firewall]
+ports = ["6443:tcp", "10250:tcp"]
+
 [customizations.firewall.services]
-enabled = ["cockpit", "ssh", "6443/tcp", "10250/tcp"]
+enabled = ["cockpit", "ssh"]
 
 [customizations.services]
 enabled = ["sshd", "cockpit.socket", "crio", "kubelet"]
