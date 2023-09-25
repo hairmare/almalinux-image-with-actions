@@ -80,7 +80,7 @@ enabled = ["cockpit", "ssh"]
 enabled = ["sshd", "cockpit.socket", "crio", "kubelet"]
 
 [[customizations.files]]
-path = "/etc/sysctl.d/99-x-local.conf"
+path = "/etc/sysctl.conf"
 mode = "0644"
 user = "root"
 group = "root"
