@@ -1,6 +1,6 @@
 name = "almalinux-9"
 description = "AlmaLinux 9"
-distro = "almalinux-92"
+distro = "almalinux-93"
 version = "0.0.0"
 modules = []
 groups = []
@@ -21,10 +21,6 @@ version = "*"
 name = "subscription-manager"
 version = "*"
 
-[[packages]]
-name = "vim"
-version = "*"
-
 [customizations]
 
 [customizations.timezone]
@@ -34,59 +30,36 @@ timezone = "Europe/Zurich"
 enabled = ["cockpit", "ssh"]
 
 [[customizations.files]]
-path = "/etc/sysctl.conf"
+[[customizations.files]]
+path = "/etc/pki/ca-trust/source/anchors/rabe.ca.crt"
 mode = "0644"
 user = "root"
 group = "root"
 data = """
-# sysctl settings are defined through files in
-# /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/.
-#
-# Vendors settings live in /usr/lib/sysctl.d/.
-# To override a whole file, create a new file with the same in
-# /etc/sysctl.d/ and put new settings there. To override
-# only specific settings, add a file with a lexically later
-# name in /etc/sysctl.d/ and put new settings there.
-#
-# For more information, see sysctl.conf(5) and sysctl.d(5).
-kernel.randomize_va_space = 2
-
-net.ipv6.conf.all.accept_ra = 0
-net.ipv6.conf.all.accept_redirects = 0
-net.ipv6.conf.all.accept_source_route = 0
-net.ipv6.conf.all.forwarding = 0
-net.ipv6.conf.default.accept_ra = 0
-net.ipv6.conf.default.accept_redirects = 0
-net.ipv6.conf.default.accept_source_route = 0
-net.bridge.bridge-nf-call-ip6tables = 1
-
-net.ipv4.conf.all.accept_redirects = 0
-net.ipv4.conf.all.accept_source_route = 0
-net.ipv4.conf.all.log_martians = 1
-net.ipv4.conf.all.rp_filter = 1
-net.ipv4.conf.all.secure_redirects = 0
-net.ipv4.conf.default.accept_redirects = 0
-net.ipv4.conf.default.log_martians = 1
-net.ipv4.conf.default.rp_filter = 1
-net.ipv4.conf.default.secure_redirects = 0
-net.ipv4.icmp_echo_ignore_broadcasts = 1
-net.ipv4.icmp_ignore_bogus_error_responses = 1
-net.ipv4.tcp_syncookies = 1
-net.ipv4.conf.all.send_redirects = 0
-net.ipv4.conf.default.send_redirects = 0
-net.ipv4.ip_forward = 1
-net.bridge.bridge-nf-call-iptables = 1"""
+-----BEGIN CERTIFICATE-----
+MIIDlTCCAn2gAwIBAgIBATANBgkqhkiG9w0BAQsFADA2MRQwEgYDVQQKDAtJTlQu
+UkFCRS5DSDEeMBwGA1UEAwwVQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTE2MDYy
+MzExNTUzOVoXDTM2MDYyMzExNTUzOVowNjEUMBIGA1UECgwLSU5ULlJBQkUuQ0gx
+HjAcBgNVBAMMFUNlcnRpZmljYXRlIEF1dGhvcml0eTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAMmCtYNSbVHVtmPtq7Ys60NhQd4sMND9uP5IEXlbh2MK
+RfQ4G/jUXlFDsWuNpsMMOj7zveXPwVn5JF+j3YjQXWCeDxfqjsTA0fpDIJnMPydZ
+HOPFr5MSDb8GhWvgfMP7zw5a34DZwk/UGLGsRs0yMp5xg0MtIrAGQb30fA+Sees3
+6J+qDYq3qci6ynWCkrBUiyVtuZaQyjKNbYOiKnVfHwPRCQfUnSjT/GMnKLMaRCNe
+1OPh8Rx/1RorQjbiQogUgnl5EY+LiCKnW38nWZAfpkdiq1srocorq1dnR3GOuiS7
+nz9p9cQuJPvWBKjSjy+KaRFNaJtx1mOOY11EagluaQsCAwEAAaOBrTCBqjAfBgNV
+HSMEGDAWgBQx4/sibdYJdca+q17Q/r02w/uWQTAPBgNVHRMBAf8EBTADAQH/MA4G
+A1UdDwEB/wQEAwIBxjAdBgNVHQ4EFgQUMeP7Im3WCXXGvqte0P69NsP7lkEwRwYI
+KwYBBQUHAQEEOzA5MDcGCCsGAQUFBzABhitodHRwOi8vaXBhMDEuc2VydmljZS5p
+bnQucmFiZS5jaDo4MC9jYS9vY3NwMA0GCSqGSIb3DQEBCwUAA4IBAQCPFi1KGans
+7T0U4z/BS97AgiQ1R5qBCVS4XSco7jiLlL3YTl3QQceoZaZuz4P9eizLanukSd0e
+82QI2eSW70KEo9cBG96EHq6zAdOkoilKN4AnGCc7yZ/77FaAjwNfyLXtNM0xH3Iu
+1UPApiNQGnNcP9+cNRUIwFUM3vWuZEAEkG3L0YNROv5dqXzmyg2RznZ4o+4nkZ0N
+ZlAI5dc/YBXor7SjoFtSBs3nib1ikNQ+BoB/I7aNxVxouovwraJMhX0uvQSo3cI9
+ZBG9JD+ZEfngycJUtVF9zh1Kn9znIifWQeJOomw5oG451QO6/IxmvoXPlLrde1YH
+XeAbl7fsKaCr
+-----END CERTIFICATE-----
+"""
 
 [[customizations.sshkey]]
 user = "root"
-key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvv0JHfOaqUR0XShL66xUw5lWQQSwoo8IdRigObgcPrWKc8BrYDjQmWGuyLG/Y14v0XLZ/xv6qyX6yRVLWJNm2PsO7g739KZWvIC49kMhfqjEm7hr2NHaQVNuAJlavE7JLt9WjRPY5GvTYAjnBB49rTATT+wPshNMlnI/cnf21Cn+0kbltB6q8lIeo/gDW8XYsTCPKvikSPAAFgUozljnwW7DNeFlag8e8pPAB1VFJOafwJPZ++jyUPFd0+gCOCk7pvfOlVST/r6Iplyw4K5KkcWhxWMCz5MvYkC9jUSmGjpfaQvbExordbeNr+zkvTGsj8XWVLWV0KK0LwBvVBDFOQ=="
-
-[[customizations.user]]
-name = "admin"
-description = "Local Admin User"
-password = "$6$t58wJBNUgBnRbPcz$OiTh3obvlTx4/bNyiYrItckqFMMEyrM88o.KjHqdWDK2lB3egQUguvVjIG6mbVSMqetumC8NXNGU..3tVTUfP/"
-key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvv0JHfOaqUR0XShL66xUw5lWQQSwoo8IdRigObgcPrWKc8BrYDjQmWGuyLG/Y14v0XLZ/xv6qyX6yRVLWJNm2PsO7g739KZWvIC49kMhfqjEm7hr2NHaQVNuAJlavE7JLt9WjRPY5GvTYAjnBB49rTATT+wPshNMlnI/cnf21Cn+0kbltB6q8lIeo/gDW8XYsTCPKvikSPAAFgUozljnwW7DNeFlag8e8pPAB1VFJOafwJPZ++jyUPFd0+gCOCk7pvfOlVST/r6Iplyw4K5KkcWhxWMCz5MvYkC9jUSmGjpfaQvbExordbeNr+zkvTGsj8XWVLWV0KK0LwBvVBDFOQ=="
-home = "/home/admin/"
-shell = "/usr/bin/bash"
-groups = ["users", "wheel"]
-uid = 1000
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB1PBMeOamUN3Jo4wyUaNWgkR99T3e9OYdsxnXjuHFZV5igk2Jx6js8pIpOvD6K0tmMiwLVYNNVj+weTtu/5+2s/7pEiXFTyw+ia3A9LerRfBE8ICEbMdeDj8ul9s8IdrvnD9owuwrSw+eMgqK3NTN2q2N77QD80v3sg9Bxg2eNQ+lDpoNOEjZ8kTQcErm+wf2afR1dBIX45T0SpztiWL1DjtmNx1dyA/gkH2A6dkKVHZ/tU5WBXXocqsTRLsVP+MDG7fMurbS9K8cgXsyPWRPhCR3fhWsnSgKVeCuqVpkDW4pNXOxrnD4HNc8KoidIbJXQ6dqNBEJgfQS/JD7zUt4T9/wIXm/IEN3lCaj++kRAewPWEaAoZ504trOaj8UW1EmhjVzc9Q7XMY2J2C2B9Zee5fpT1NMePQcJrIoy9r26Xf1hVR2VFxbktc/rqStg4ZS3CDDQ5SQRMXQeYN1jrRm9iL642+l1y47NoT/mqoWUZvna+0mnwkkBqfEv6e2AYs="
