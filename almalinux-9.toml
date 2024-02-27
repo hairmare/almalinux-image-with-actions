@@ -57,8 +57,7 @@ bnQucmFiZS5jaDo4MC9jYS9vY3NwMA0GCSqGSIb3DQEBCwUAA4IBAQCPFi1KGans
 ZlAI5dc/YBXor7SjoFtSBs3nib1ikNQ+BoB/I7aNxVxouovwraJMhX0uvQSo3cI9
 ZBG9JD+ZEfngycJUtVF9zh1Kn9znIifWQeJOomw5oG451QO6/IxmvoXPlLrde1YH
 XeAbl7fsKaCr
------END CERTIFICATE-----
-"""
+-----END CERTIFICATE-----"""
 
 [[customizations.sshkey]]
 user = "root"
