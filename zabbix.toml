@@ -1,0 +1,7 @@
+id = "zabbix"
+name = "Zabbix"
+type = "yum-baseurl"
+url = "https://repo.zabbix.com/zabbix/6.5/alma/9/x86_64/"
+check_gpg = false
+check_ssl = true
+system = false

@@ -21,7 +21,9 @@ version = "*"
 name = "subscription-manager"
 version = "*"
 
-[customizations]
+[[packages]]
+names = "zabbix-agent2"
+version = "*"
 
 [customizations.timezone]
 timezone = "Europe/Zurich"
@@ -59,6 +61,11 @@ XeAbl7fsKaCr
 -----END CERTIFICATE-----
 """
 
-[[customizations.sshkey]]
+[[customizations.files]]
+path = "/etc/cloud/cloud.cfg"
+mode = "0644"
 user = "root"
-key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDB1PBMeOamUN3Jo4wyUaNWgkR99T3e9OYdsxnXjuHFZV5igk2Jx6js8pIpOvD6K0tmMiwLVYNNVj+weTtu/5+2s/7pEiXFTyw+ia3A9LerRfBE8ICEbMdeDj8ul9s8IdrvnD9owuwrSw+eMgqK3NTN2q2N77QD80v3sg9Bxg2eNQ+lDpoNOEjZ8kTQcErm+wf2afR1dBIX45T0SpztiWL1DjtmNx1dyA/gkH2A6dkKVHZ/tU5WBXXocqsTRLsVP+MDG7fMurbS9K8cgXsyPWRPhCR3fhWsnSgKVeCuqVpkDW4pNXOxrnD4HNc8KoidIbJXQ6dqNBEJgfQS/JD7zUt4T9/wIXm/IEN3lCaj++kRAewPWEaAoZ504trOaj8UW1EmhjVzc9Q7XMY2J2C2B9Zee5fpT1NMePQcJrIoy9r26Xf1hVR2VFxbktc/rqStg4ZS3CDDQ5SQRMXQeYN1jrRm9iL642+l1y47NoT/mqoWUZvna+0mnwkkBqfEv6e2AYs="
+group = "root"
+data = """
+datasource_list: ["NoCloud", "ConfigDrive"]
+"""
