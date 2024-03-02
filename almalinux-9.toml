@@ -21,10 +21,6 @@ version = "*"
 name = "subscription-manager"
 version = "*"
 
-[[packages]]
-names = "zabbix-agent2"
-version = "*"
-
 [customizations.timezone]
 timezone = "Europe/Zurich"
 
