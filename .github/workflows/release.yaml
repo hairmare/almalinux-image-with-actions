@@ -16,8 +16,20 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: oras-project/setup-oras@v1
+      - name: ORAS meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/hairmare/alamalinux-image-with-actions
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
 
       - name: Run the build
         # based on the script from https://github.com/major/imagebuilder-fedora
@@ -73,8 +85,12 @@ jobs:
           sudo podman exec -w /repo/dist -t osbuild chmod -R +r /repo/dist
 
       - name: Store image in artifact storage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: image
           path: |
             dist
+      - name: Login to GitHub Container Registry
+        run: oras login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+      - name: Push VM Image to OCI registry
+        run: oras push ${{ steps.meta.outputs.tags }} --artifact-type=application/vnd.qemu-disk+octet-stream  dist/*-disk.qcow2:application/octet-stream
