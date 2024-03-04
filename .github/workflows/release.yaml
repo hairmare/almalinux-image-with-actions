@@ -97,8 +97,8 @@ jobs:
         run: oras login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: Push VM Image to OCI registry
         run: |
-          echo '${{ toJSON(fromJSON(steps.meta.outputs.json).labels) }}' | tee dist/oras-annotations.json
+          echo '${{ toJSON(fromJSON(steps.meta.outputs.json).labels) }}' | tee oras-annotations.json
           for tag in "${{ steps.meta.outputs.tags }}";
           do
-            oras push "${tag}" --annotation-file dist/oras-annotations.json --artifact-type="application/vnd.qemu-disk+octet-stream" "dist/${{ steps.build.outputs.disk }}:application/octet-stream"
+            oras push "${tag}" --annotation-file oras-annotations.json --artifact-type="application/vnd.qemu-disk+octet-stream" "dist/${{ steps.build.outputs.disk }}:application/octet-stream"
           done
