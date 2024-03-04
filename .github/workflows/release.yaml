@@ -32,6 +32,7 @@ jobs:
             type=sha
 
       - name: Run the build
+        id: build
         # based on the script from https://github.com/major/imagebuilder-fedora
         # licenced under the Apache License
         run: |
@@ -83,6 +84,8 @@ jobs:
           sudo podman exec -t osbuild mkdir -p /repo/dist
           sudo podman exec -w /repo/dist -t osbuild composer-cli compose image ${COMPOSE_ID}
           sudo podman exec -w /repo/dist -t osbuild chmod -R +r /repo/dist
+          echo "id=${COMPOSE_ID}" >> "$GITHUB_OUTPUT"
+          echo "disk=${COMPOSE_ID}-disk.qcow2" >> "$GITHUB_OUTPUT"
 
       - name: Store image in artifact storage
         uses: actions/upload-artifact@v4
@@ -94,7 +97,8 @@ jobs:
         run: oras login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: Push VM Image to OCI registry
         run: |
+          echo '${{ toJSON(fromJSON(steps.meta.outputs.json).labels) }}' | tee dist/oras-annotations.json
           for tag in "${{ steps.meta.outputs.tags }}";
           do
-            oras push "${tag}" --artifact-type=application/vnd.qemu-disk+octet-stream dist/*-disk.qcow2:application/octet-stream
+            oras push "${tag}" --annotation-file dist/oras-annotations.json --artifact-type="application/vnd.qemu-disk+octet-stream" "dist/${{ steps.build.outputs.disk }}:application/octet-stream"
           done
