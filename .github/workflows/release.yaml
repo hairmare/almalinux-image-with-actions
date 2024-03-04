@@ -93,4 +93,8 @@ jobs:
       - name: Login to GitHub Container Registry
         run: oras login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: Push VM Image to OCI registry
-        run: oras push ${{ steps.meta.outputs.tags }} --artifact-type=application/vnd.qemu-disk+octet-stream  dist/*-disk.qcow2:application/octet-stream
+        run: |
+          for tag in "${{ steps.meta.outputs.tags }}";
+          do
+            oras push "${tag}" --artifact-type=application/vnd.qemu-disk+octet-stream dist/*-disk.qcow2:application/octet-stream
+          done
